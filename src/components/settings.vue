@@ -75,8 +75,9 @@ function sendNewSettings() {
                     name="size" 
                     class="param" 
                     id="size__1"
-                    value="1"
+                    value="0.8"
                     v-model="local.newParams.size"
+                    @click="sendNewSettings"
                     checked>
                 </div>
 
@@ -106,8 +107,9 @@ function sendNewSettings() {
                     name="size" 
                     class="param" 
                     id="size__2"
-                    value="1.5"
-                    v-model="local.newParams.size">
+                    value="1"
+                    v-model="local.newParams.size"
+                    @click="sendNewSettings">
                 </div>
 
                 <div class="param-box">
@@ -136,8 +138,9 @@ function sendNewSettings() {
                     name="size" 
                     class="param" 
                     id="size__3"
-                    value="2"
-                    v-model="local.newParams.size">
+                    value="1.2"
+                    v-model="local.newParams.size"
+                    @click="sendNewSettings">
                 </div>
             </div>
         </div>

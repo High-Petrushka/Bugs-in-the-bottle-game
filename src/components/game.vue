@@ -87,7 +87,7 @@ function restoreVisibillity() {
                 v-if="local.targetVisibility"
                 v-for="item in Number(local.params.amount)"
                 class="target"
-                :style="positions[item - 1]"
+                :style="[positions[item - 1], {transform: `scale(${local.params.size})`}]"
                 @click="targetClick(item - 1)">Click</div>
             </div>
             <div class="timer__sect">
@@ -140,8 +140,7 @@ function restoreVisibillity() {
     left: 0;
     top: 0;
 
-    transform: translateX(0px);
-    transform: translateY(0px);
+    transform: scale(1);
     transition: 0.5s;
 }
 
