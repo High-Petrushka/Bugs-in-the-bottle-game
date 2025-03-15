@@ -15,7 +15,7 @@ const local = reactive({
     page: [1],
     settings: {
         amount: 5,
-        speed: 5000,
+        speed: 1000,
         size: 1,
     },
 });
@@ -36,7 +36,8 @@ function saveParams(newParams) {
     <Settings v-if="local.page[0] === 0"
     :savedParams="local.settings"
     @sendSettings="saveParams"/>
-    <Game v-if="local.page[0] === 1"/>
+    <Game v-if="local.page[0] === 1"
+    :gameParams="local.settings"/>
     <Results v-if="local.page[0] === 2"/>
 </template>
 

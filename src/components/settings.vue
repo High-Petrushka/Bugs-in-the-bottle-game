@@ -19,7 +19,6 @@ const local = reactive({
 
 function copyObj() {
     local.newParams = {...props.savedParams}
-    console.log(local.newParams);
 }
 
 onMounted(() => {
@@ -28,9 +27,15 @@ onMounted(() => {
     copyObj(props.savedParams, local.newParams);
 });
 
-onUnmounted(() => {
+/* onUnmounted(() => {
     emit('sendSettings', local.newParams);
-})
+}); */
+
+function sendNewSettings() {
+    setTimeout(() => {
+        emit('sendSettings', local.newParams);
+    }, 100);
+}
 </script>
 
 <template>
@@ -50,6 +55,7 @@ onUnmounted(() => {
                     id="amount__1"
                     value="5" 
                     v-model="local.newParams.amount"
+                    @click="sendNewSettings"
                     checked>
                 </div>
                 <div class="param-box">
@@ -58,8 +64,9 @@ onUnmounted(() => {
                     name="speed"
                      class="param"
                       id="speed__1"
-                      value="5000" 
+                      value="1000" 
                       v-model="local.newParams.speed"
+                      @click="sendNewSettings"
                       checked>
                 </div>
                 <div class="param-box">
@@ -80,7 +87,8 @@ onUnmounted(() => {
                     class="param"
                     id="amount__2"
                     value="10"
-                    v-model="local.newParams.amount">
+                    v-model="local.newParams.amount"
+                    @click="sendNewSettings">
                 </div>
                 <div class="param-box">
                     <input 
@@ -88,8 +96,9 @@ onUnmounted(() => {
                     name="speed" 
                     class="param" 
                     id="speed__2"
-                    value="3000"
-                    v-model="local.newParams.speed">
+                    value="800"
+                    v-model="local.newParams.speed"
+                    @click="sendNewSettings">
                 </div>
                 <div class="param-box">
                     <input 
@@ -108,7 +117,8 @@ onUnmounted(() => {
                     class="param"
                     id="amount__3"
                     value="15"
-                    v-model="local.newParams.amount">
+                    v-model="local.newParams.amount"
+                    @click="sendNewSettings">
                 </div>
                 <div class="param-box">
                     <input 
@@ -116,8 +126,9 @@ onUnmounted(() => {
                     name="speed" 
                     class="param" 
                     id="speed__3"
-                    value="1000"
-                    v-model="local.newParams.speed">
+                    value="500"
+                    v-model="local.newParams.speed"
+                    @click="sendNewSettings">
                 </div>
                 <div class="param-box">
                     <input 
