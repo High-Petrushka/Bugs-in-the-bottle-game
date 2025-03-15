@@ -2,6 +2,7 @@
 import Menu from './components/menu.vue';
 import Settings from './components/settings.vue';
 import Results from './components/results.vue';
+import GameOverModal from './components/modals/GameOverModal.vue';
 
 import { reactive } from 'vue';
 import Game from './components/game.vue';
@@ -16,8 +17,9 @@ const local = reactive({
     settings: {
         amount: 5,
         speed: 1000,
-        size: 1,
+        size: 0.8,
     },
+    showModal: false,
 });
 
 // Changing current page by the mutation of the "page" variable
@@ -39,6 +41,7 @@ function saveParams(newParams) {
     <Game v-if="local.page[0] === 1"
     :gameParams="local.settings"/>
     <Results v-if="local.page[0] === 2"/>
+    <GameOverModal v-if="local.showModal"/>
 </template>
 
 <style scoped>

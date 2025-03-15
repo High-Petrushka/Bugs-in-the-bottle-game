@@ -11,6 +11,7 @@
   --card-border-color: rgba(246, 244, 235, 1);
   --accent-color: rgba(127, 161, 195, 1);
   --hover-color: rgb(145, 200, 228);
+  --modal-background-color: rgba(246, 244, 235, 0.4);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -37,6 +38,8 @@ body {
 
   background-color: var(--background-color);
   color: var(--font-color);
+
+  position: relative;
 }
 
 h1 {
