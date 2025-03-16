@@ -20,6 +20,8 @@ const local = reactive({
         size: 0.8,
     },
     showModal: false,
+    userResults: [],
+    curResult: 0,
 });
 
 // Changing current page by the mutation of the "page" variable
@@ -30,6 +32,16 @@ function pageChanger(page) {
 function saveParams(newParams) {
     local.settings = {...newParams};
 }
+
+function modalAction(state) {
+    local.showModal = state;
+}
+
+function takeResult(resInfo) {
+    local.userResults.push(resInfo);
+    local.curResult = resInfo.res;
+    console.log(local.curResult);
+}
 </script>
 
 <template>
@@ -39,9 +51,14 @@ function saveParams(newParams) {
     :savedParams="local.settings"
     @sendSettings="saveParams"/>
     <Game v-if="local.page[0] === 1"
-    :gameParams="local.settings"/>
-    <Results v-if="local.page[0] === 2"/>
-    <GameOverModal v-if="local.showModal"/>
+    :gameParams="local.settings"
+    @change-modal-state="modalAction"
+    @sendResult="takeResult"/>
+    <Results v-if="local.page[0] === 2"
+    :resultList="local.userResults"/>
+    <GameOverModal v-if="local.showModal"
+    :resultVal="local.curResult"
+    @change-modal-state="modalAction"/>
 </template>
 
 <style scoped>
