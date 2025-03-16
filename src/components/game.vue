@@ -43,13 +43,13 @@ function timer() {
 
     const timerIntervalID = setInterval(() => {
         if (local.timeRemainder < 1) {
-            emit('sendResult', {optios: local.params, res: local.timeRemainder});
+            emit('sendResult', {options: local.params, res: local.timeRemainder});
             local.targetVisibility = false;
             clearInterval(timerIntervalID);
             emit('changeModalState', true);
         } else {
             if (local.targetRemainder === Number(local.params.amount)) {
-                emit('sendResult', {optios: local.params, res: local.timeRemainder});
+                emit('sendResult', {options: local.params, res: local.timeRemainder});
                 local.targetVisibility = false;
                 local.timeRemainder = 0;
                 clearInterval(timerIntervalID);
@@ -144,6 +144,7 @@ function restoreVisibillity() {
     text-align: center;
 
     cursor: pointer;
+    user-select: none;
 
     position: absolute;
     left: 0;

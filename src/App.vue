@@ -16,8 +16,8 @@ const local = reactive({
     page: [1],
     settings: {
         amount: 5,
-        speed: 1000,
-        size: 0.8,
+        speed: '1000',
+        size: '0.8',
     },
     showModal: false,
     userResults: [],
@@ -38,9 +38,32 @@ function modalAction(state) {
 }
 
 function takeResult(resInfo) {
+    switch (resInfo.options.speed) {
+        case '1000':
+            resInfo.options.speed = 'Low';
+            break;
+        case '800':
+            resInfo.options.speed = 'Medium';
+            break;
+        case '500':
+            resInfo.options.speed = 'High';
+            break;
+    }
+
+    switch (resInfo.options.size) {
+        case '0.8':
+            resInfo.options.size = 'Little';
+            break;
+        case '1':
+            resInfo.options.size = 'Medium';
+            break;
+        case '1.2':
+            resInfo.options.size = 'Large';
+            break;
+    }
+ 
     local.userResults.push(resInfo);
     local.curResult = resInfo.res;
-    console.log(local.curResult);
 }
 </script>
 

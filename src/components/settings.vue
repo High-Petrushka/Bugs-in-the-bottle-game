@@ -22,8 +22,6 @@ function copyObj() {
 }
 
 onMounted(() => {
-    console.log("Mounted");
-
     copyObj(props.savedParams, local.newParams);
 });
 
