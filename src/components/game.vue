@@ -3,7 +3,8 @@ import { ref, reactive, onMounted, onUnmounted } from 'vue';
 
 const emit = defineEmits([
     'changeModalState',
-    'sendResult'
+    'sendResult',
+    'lockBtn',
 ]);
 
 const props = defineProps({
@@ -34,6 +35,8 @@ onUnmounted(() => {
 
 function timer() {
     generator();
+
+    emit('lockBtn', true);
 
     local.timeRemainder = 100;
     local.targetRemainder = 0;

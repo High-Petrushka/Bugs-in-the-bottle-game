@@ -1,11 +1,17 @@
 <script setup>
     const emit = defineEmits([
         'changeModalState',
+        'unlockBtn'
     ]);
 
     const props = defineProps({
         resultVal: Number,
     });
+
+    function sendRespond() {
+        emit('changeModalState', false);
+        emit('unlockBtn', false);
+    }
 </script>
 
 <template>
@@ -20,7 +26,7 @@
                     </div>
                     <div class="modal__btn">
                         <button
-                        @click="$emit('changeModalState', false)">OK</button>
+                        @click="sendRespond">OK</button>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import Menu from './components/menu.vue';
 import Settings from './components/settings.vue';
 import Results from './components/results.vue';
 import GameOverModal from './components/modals/GameOverModal.vue';
+import BlockModal from './components/modals/BlockModal.vue';
 
 import { reactive } from 'vue';
 import Game from './components/game.vue';
@@ -20,6 +21,7 @@ const local = reactive({
         size: '0.8',
     },
     showModal: false,
+    blockButtons: false,
     userResults: [],
     curResult: 0,
 });
@@ -65,6 +67,10 @@ function takeResult(resInfo) {
     local.userResults.push(resInfo);
     local.curResult = resInfo.res;
 }
+
+function changeBtnState(state) {
+    local.blockButtons = state;
+}
 </script>
 
 <template>
@@ -76,12 +82,15 @@ function takeResult(resInfo) {
     <Game v-if="local.page[0] === 1"
     :gameParams="local.settings"
     @change-modal-state="modalAction"
-    @sendResult="takeResult"/>
+    @sendResult="takeResult"
+    @lockBtn="changeBtnState"/>
     <Results v-if="local.page[0] === 2"
     :resultList="local.userResults"/>
     <GameOverModal v-if="local.showModal"
     :resultVal="local.curResult"
-    @change-modal-state="modalAction"/>
+    @change-modal-state="modalAction"
+    @unlockBtn="changeBtnState"/>
+    <BlockModal v-if="local.blockButtons" />
 </template>
 
 <style scoped>
